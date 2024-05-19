@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
@@ -9,33 +8,34 @@
 <body>	
 	<script>
 		function secondHighest(arr) {
-			
-			arr.sort(function(a,b)=>{return a>b});
-			let x=arr[0];
-			for(let i=1; i<arr.length; i++){
-				if(arr[i]<x){
-					console.log(arr[i]);
-					return;
+			if (arr.length < 2) return -Infinity;
+
+			let max = -Infinity;
+			let secondMax = -Infinity;
+
+			for (let num of arr) {
+				if (num > max) {
+					secondMax = max;
+					max = num;
+				} else if (num > secondMax && num < max) {
+					secondMax = num;
 				}
 			}
-			return "-infinity";
+
+			return secondMax === -Infinity ? -Infinity : secondMax;
 		}
-		
 
 		function Main() {
 			var n = prompt("Enter the number of elements");
 			var arr = [];
 			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
+				arr[i] = parseInt(prompt("Enter element " + (i+1)));
 			}
 			alert(secondHighest(arr));
 		}
+
 		Main();
 	</script>
-
-    <script type="text/javascript" src="./script.js">
-</script>
-
 </body>
 
 </html>
